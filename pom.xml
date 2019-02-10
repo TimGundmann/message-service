@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>dk.gundmann</groupId>
-	<artifactId>user-service</artifactId>
+	<artifactId>message-service</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>user-service</name>
+	<name>message-service</name>
 	<description>Message service for gundmann.dk</description>
 
 	<parent>
