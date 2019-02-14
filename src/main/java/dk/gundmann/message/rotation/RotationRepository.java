@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RotationRepository extends CrudRepository<Rotation, String> {
 	
-	@Query("SELECT r FROM Rotation r WHERE r.to > CURRENT_DATE")
+	@Query("SELECT r FROM Rotation r WHERE r.to > CURRENT_DATE ORDER BY r.to")
 	Iterable<Rotation> findActive();
 
 }
