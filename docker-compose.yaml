@@ -4,7 +4,7 @@ services:
     network_mode: "host"
     restart: "always"
     build: .
-    image: message-service
+    image: plan-service
     volumes:
       - /security:/security
     environment:

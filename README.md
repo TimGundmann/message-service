@@ -1,2 +1,2 @@
-# message-service
-Service to handle different types of messages
+# plan-service
+Service to handle different types of plans

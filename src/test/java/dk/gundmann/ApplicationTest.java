@@ -1,4 +1,4 @@
-package dk.gundmann.message;
+package dk.gundmann;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

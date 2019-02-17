@@ -1,4 +1,4 @@
-package dk.gundmann.message.rotation;
+package dk.gundmann.plan;
 
 import java.time.LocalDate;
 
@@ -13,49 +13,48 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rotations")
 @Transactional
-public class RotationController {
+public class PlanController {
 
-	private RotationRepository rotationRepository;
+	private PlanRepository planRepository;
 
-	public RotationController(RotationRepository rotationRepository) {
-		this.rotationRepository = rotationRepository;
+	public PlanController(PlanRepository planRepository) {
+		this.planRepository = planRepository;
 	}
 	
 	@GetMapping
-	public Iterable<Rotation> getAllRotations() {
-		return rotationRepository.findAll();
+	public Iterable<Plan> getAllPlans() {
+		return planRepository.findAll();
 	}
 	
 	@GetMapping("/active")
-	public Iterable<Rotation> getActiveRotations() {
-		return rotationRepository.findActive();
+	public Iterable<Plan> getActivePlans() {
+		return planRepository.findActive();
 	}
 	
 	@PostMapping("/add")
-	public void add(@RequestBody Rotation rotation) {
-		rotationRepository.save(rotation);
+	public void add(@RequestBody Plan plan) {
+		planRepository.save(plan);
 	}
 	
 	@PostMapping("/delete")
 	public void delete(@RequestBody String id) {
-		rotationRepository.deleteById(id);
+		planRepository.deleteById(id);
 	}
 	
 	@PostMapping(path = "/{id}/from/{from}")
 	public void updateFrom(@PathVariable String id, @PathVariable String from) {
-		rotationRepository.findById(id).ifPresent(rotation -> { 
-			rotation.setFrom(LocalDate.parse(from)); 
-			rotationRepository.save(rotation);
+		planRepository.findById(id).ifPresent(plan -> { 
+			plan.setFrom(LocalDate.parse(from)); 
+			planRepository.save(plan);
 		});
 	}
 	
 	@PostMapping(path = "/{id}/to/{to}")
 	public void updateTo(@PathVariable String id, @PathVariable String to) {
-		rotationRepository.findById(id).ifPresent(rotation -> { 
-			rotation.setTo(LocalDate.parse(to)); 
-			rotationRepository.save(rotation);
+		planRepository.findById(id).ifPresent(plan -> { 
+			plan.setTo(LocalDate.parse(to)); 
+			planRepository.save(plan);
 		});
 	}
 	

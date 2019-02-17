@@ -1,4 +1,4 @@
-package dk.gundmann.message.rotation;
+package dk.gundmann.plan;
 
 import java.time.LocalDate;
 
@@ -26,7 +26,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rotation {
+public class Plan {
 
     @Id
     @GeneratedValue(generator = "uuid")
