@@ -2,6 +2,7 @@ package dk.gundmann.message.rotation;
 
 import java.time.LocalDate;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,11 +14,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
+@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,9 +34,11 @@ public class Rotation {
     private String id;
     
 	private String headline;
+	@Setter
 	@NotNull
 	@Column(name="fromDate")
 	private LocalDate from;
+	@Setter
 	@NotNull
 	@Column(name="toDate")
 	private LocalDate to;
