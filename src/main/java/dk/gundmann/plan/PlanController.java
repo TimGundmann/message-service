@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlanController {
 
 	private PlanRepository planRepository;
+	private CategoryRepository categoryRepository;
 
-	public PlanController(PlanRepository planRepository) {
+	public PlanController(PlanRepository planRepository, CategoryRepository categoryRepository) {
 		this.planRepository = planRepository;
+		this.categoryRepository = categoryRepository;
 	}
 	
 	@GetMapping
@@ -27,9 +29,15 @@ public class PlanController {
 		return planRepository.findAll();
 	}
 	
-	@GetMapping("/active")
-	public Iterable<Plan> getActivePlans() {
-		return planRepository.findActive();
+	@GetMapping("/categories")
+	public Iterable<Category> getAllCategories() {
+		return categoryRepository.findAll();
+	}
+
+	
+	@GetMapping("/{category}/active")
+	public Iterable<Plan> getActivePlans(@PathVariable String category) {
+		return planRepository.findActiveByCategory(category);
 	}
 	
 	@PostMapping("/add")

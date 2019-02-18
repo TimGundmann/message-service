@@ -2,19 +2,18 @@ package dk.gundmann.plan;
 
 import java.time.LocalDate;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -48,5 +47,11 @@ public class Plan {
 	private String fileType;
 	
 	private String fileName;
+	
+	@OneToOne
+	private Category category;
+	
+	@OneToOne
+	private SubCategory subCategory;
 	
 }
