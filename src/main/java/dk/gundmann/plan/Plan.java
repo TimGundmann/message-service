@@ -34,11 +34,9 @@ public class Plan {
     
 	private String headline;
 	@Setter
-	@NotNull
 	@Column(name="fromDate")
 	private LocalDate from;
 	@Setter
-	@NotNull
 	@Column(name="toDate")
 	private LocalDate to;
 	@Lob
