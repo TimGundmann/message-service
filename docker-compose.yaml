@@ -1,6 +1,6 @@
 version: '2'
 services:
-  user:
+  plan:
     network_mode: "host"
     restart: "always"
     build: .
