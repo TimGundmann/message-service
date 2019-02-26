@@ -2,7 +2,6 @@ package dk.gundmann.plan;
 
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;

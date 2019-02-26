@@ -1,7 +1,5 @@
 package dk.gundmann.plan;
 
-import javax.persistence.OrderBy;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
