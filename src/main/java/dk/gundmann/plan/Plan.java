@@ -6,8 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,6 +28,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(indexes = { @Index(name = "IDX_CATEGORY", columnList = "category_name") })
 public class Plan {
 
     @Id
@@ -45,7 +50,8 @@ public class Plan {
 	
 	private String fileName;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="category_name", nullable=false)
 	private Category category;
 	
 	@OneToOne
