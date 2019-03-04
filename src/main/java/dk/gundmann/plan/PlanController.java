@@ -8,15 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import dk.gundmann.userclient.UserClient;
+
 @RestController
 public class PlanController {
 
 	private PlanRepository planRepository;
 	private CategoryRepository categoryRepository;
+	private UserClient userNotification;
 
-	public PlanController(PlanRepository planRepository, CategoryRepository categoryRepository) {
+	public PlanController(
+			PlanRepository planRepository, 
+			CategoryRepository categoryRepository,
+			UserClient userNotification) {
 		this.planRepository = planRepository;
 		this.categoryRepository = categoryRepository;
+		this.userNotification = userNotification;
 	}
 	
 	@GetMapping
@@ -42,6 +49,7 @@ public class PlanController {
 	@PostMapping("/add")
 	public void add(@RequestBody Plan plan) {
 		planRepository.save(plan);
+		userNotification.notifiy(plan.getCategory().getName());
 	}
 	
 	@PostMapping("/delete")
