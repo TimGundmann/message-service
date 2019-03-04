@@ -21,7 +21,9 @@ public class AuthRequestInterceptor implements RequestInterceptor {
 
 	@Override
 	public void apply(RequestTemplate template) {
-		template.header(properties.getHeaderString(), token.getToken());
+		if (token.getToken() != null) {
+			template.header(properties.getHeaderString(), token.getToken());
+		}
 	}
 
 
