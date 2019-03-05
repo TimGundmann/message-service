@@ -50,6 +50,9 @@ public class PlanController {
 	@PostMapping("/add")
 	public void add(@RequestBody Plan plan) {
 		plan.setCreatedDate(LocalDateTime.now());
+		if (CategoryType.TO.equals(plan.getCategory().getType())) {
+			plan.setTo(LocalDate.now());
+		}
 		planRepository.save(plan);
 		userNotification.notifiy(plan.getCategory().getName());
 	}
