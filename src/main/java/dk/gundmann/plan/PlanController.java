@@ -1,6 +1,7 @@
 package dk.gundmann.plan;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class PlanController {
 	
 	@PostMapping("/add")
 	public void add(@RequestBody Plan plan) {
+		plan.setCreatedDate(LocalDateTime.now());
 		planRepository.save(plan);
 		userNotification.notifiy(plan.getCategory().getName());
 	}

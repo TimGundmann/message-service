@@ -1,6 +1,7 @@
 package dk.gundmann.plan;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,5 +57,8 @@ public class Plan {
 	
 	@OneToOne
 	private SubCategory subCategory;
+	
+	@Setter
+	private LocalDateTime createdDate;
 	
 }
