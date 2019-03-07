@@ -17,14 +17,17 @@ public class PlanController {
 	private PlanRepository planRepository;
 	private CategoryRepository categoryRepository;
 	private UserClient userNotification;
+	private SubCategoryRepository subCategoryRepository;
 
 	public PlanController(
 			PlanRepository planRepository, 
 			CategoryRepository categoryRepository,
-			UserClient userNotification) {
+			UserClient userNotification,
+			SubCategoryRepository subCategoryRepository) {
 		this.planRepository = planRepository;
 		this.categoryRepository = categoryRepository;
 		this.userNotification = userNotification;
+		this.subCategoryRepository = subCategoryRepository;
 	}
 	
 	@GetMapping
@@ -50,9 +53,6 @@ public class PlanController {
 	@PostMapping("/add")
 	public void add(@RequestBody Plan plan) {
 		plan.setCreatedDate(LocalDateTime.now());
-		if (CategoryType.TO.equals(plan.getCategory().getType())) {
-			plan.setTo(LocalDate.now());
-		}
 		planRepository.save(plan);
 		userNotification.notifiy(plan.getCategory().getName());
 	}
@@ -75,6 +75,18 @@ public class PlanController {
 		planRepository.findById(id).ifPresent(plan -> { 
 			plan.setTo(LocalDate.parse(to)); 
 			planRepository.save(plan);
+		});
+	}
+	
+	@PostMapping(path = "/categories/{name}/subcategories/add/{subname}")
+	public void addSubCategory(@PathVariable String name, @PathVariable String subname) {
+		categoryRepository.findById(name).ifPresent(category -> { 
+			SubCategory subCategory = SubCategory.builder()
+					.name(subname)
+					.build();
+			subCategoryRepository.save(subCategory);
+			category.getSubCategories().add(subCategory); 
+			categoryRepository.save(category);
 		});
 	}
 	
