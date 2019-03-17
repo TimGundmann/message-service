@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<plan-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "dk.gundmann.Application",
+            "projectName": "plan-service",
+            "args": "--spring.config.location=classpath:application.properties,classpath:application-dev.properties,file:../security.properties"
+        }
+    ]
+}
