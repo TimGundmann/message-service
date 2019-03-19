@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import dk.gundmann.security.IsAdmin;
 import dk.gundmann.userclient.UserClient;
 
 @RestController
@@ -38,6 +39,18 @@ public class PlanController {
 	@GetMapping("/categories")
 	public Iterable<Category> getAllCategories() {
 		return categoryRepository.findAll();
+	}
+
+	@IsAdmin
+	@PostMapping("/categories/{name}/delete")
+	public void deleteCategorie(@PathVariable String name) {
+		categoryRepository.deleteById(name);
+	}
+
+	@IsAdmin
+	@PostMapping("/categories/update")
+	public void updateCategorie(@RequestBody Category category) {
+		categoryRepository.save(category);
 	}
 
 	@GetMapping("/categories/{name}")

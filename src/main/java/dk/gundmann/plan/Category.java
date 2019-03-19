@@ -2,6 +2,8 @@ package dk.gundmann.plan;
 
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -34,7 +36,7 @@ public class Category {
 	
 	@Builder.Default
 	@ElementCollection(fetch=FetchType.EAGER) 	
-	private Set<String> alterRoles = Set.of("ADMIN");
+	private Set<String> alterRoles = new HashSet<>(Arrays.asList("ADMIN"));
 	
 	@OneToMany
 	private List<SubCategory> subCategories;
