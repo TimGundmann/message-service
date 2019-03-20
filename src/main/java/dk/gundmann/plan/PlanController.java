@@ -18,17 +18,14 @@ public class PlanController {
 	private PlanRepository planRepository;
 	private CategoryRepository categoryRepository;
 	private UserClient userNotification;
-	private SubCategoryRepository subCategoryRepository;
 
 	public PlanController(
 			PlanRepository planRepository, 
 			CategoryRepository categoryRepository,
-			UserClient userNotification,
-			SubCategoryRepository subCategoryRepository) {
+			UserClient userNotification) {
 		this.planRepository = planRepository;
 		this.categoryRepository = categoryRepository;
 		this.userNotification = userNotification;
-		this.subCategoryRepository = subCategoryRepository;
 	}
 	
 	@GetMapping
@@ -94,11 +91,7 @@ public class PlanController {
 	@PostMapping(path = "/categories/{name}/subcategories/add/{subname}")
 	public void addSubCategory(@PathVariable String name, @PathVariable String subname) {
 		categoryRepository.findById(name).ifPresent(category -> { 
-			SubCategory subCategory = SubCategory.builder()
-					.name(subname)
-					.build();
-			subCategoryRepository.save(subCategory);
-			category.getSubCategories().add(subCategory); 
+			category.getSubCategories().add(subname); 
 			categoryRepository.save(category);
 		});
 	}

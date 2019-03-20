@@ -1,16 +1,14 @@
 package dk.gundmann.plan;
 
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,7 +36,7 @@ public class Category {
 	@ElementCollection(fetch=FetchType.EAGER) 	
 	private Set<String> alterRoles = new HashSet<>(Arrays.asList("ADMIN"));
 	
-	@OneToMany
-	private List<SubCategory> subCategories;
+	@ElementCollection
+	private Set<String> subCategories;
 	
 }

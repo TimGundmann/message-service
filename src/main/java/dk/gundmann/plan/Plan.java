@@ -55,8 +55,7 @@ public class Plan {
 	@JoinColumn(name="category_name", nullable=false)
 	private Category category;
 	
-	@OneToOne
-	private SubCategory subCategory;
+	private String subCategory;
 	
 	@Setter
 	private LocalDateTime createdDate;
