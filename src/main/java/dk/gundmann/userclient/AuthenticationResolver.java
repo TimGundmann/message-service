@@ -1,5 +1,7 @@
 package dk.gundmann.userclient;
 
+import java.util.Base64;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
@@ -27,12 +29,16 @@ public class AuthenticationResolver {
 			if (token.getToken() == null) {
 				token.setToken(userClient
 						.login(AccountCredentials.builder().username("sys@gundmann.dk")
-								.password(properties.getSyspassword()).build())
+								.password(btoa(properties.getSyspassword())).build())
 						.getHeaders().get(properties.getHeaderString()).get(0));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String btoa(String base64) {
+		return new String(Base64.getEncoder().encode(base64.getBytes()));
 	}
 
 }
