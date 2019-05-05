@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import dk.gundmann.security.IsAdmin;
-import dk.gundmann.userclient.UserClient;
+import dk.gundmann.userclient.UserService;
 
 @RestController
 public class PlanController {
 
 	private PlanRepository planRepository;
 	private CategoryRepository categoryRepository;
-	private UserClient userNotification;
+	private UserService userNotification;
 
 	public PlanController(
 			PlanRepository planRepository, 
 			CategoryRepository categoryRepository,
-			UserClient userNotification) {
+			UserService userNotification) {
 		this.planRepository = planRepository;
 		this.categoryRepository = categoryRepository;
 		this.userNotification = userNotification;

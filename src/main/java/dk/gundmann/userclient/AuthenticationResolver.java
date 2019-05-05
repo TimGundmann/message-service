@@ -24,7 +24,7 @@ public class AuthenticationResolver {
 	}
 
 	@PostConstruct
-	public void getToken() {
+	public void updateToken() {
 		try {
 			if (token.getToken() == null) {
 				token.setToken(userClient

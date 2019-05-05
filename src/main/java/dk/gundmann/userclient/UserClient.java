@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name = "user", url = "${user.url}")
-public interface UserClient {
+interface UserClient {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/notification/{type}")
     void notifiy(@PathVariable String type);
