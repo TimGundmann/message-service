@@ -2,6 +2,7 @@ package dk.gundmann.userclient;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
+@Service
 public class UserService {
 
     private UserClient userClinet;
