@@ -18,7 +18,7 @@ public class UserService {
     public void notifiy(String type) {
         try {
             this.userClinet.notifiy(type);
-        } catch (ExpiredJwtException ex) {
+        } catch (Exception ex) {
             this.authenticationResolver.updateToken();
             this.userClinet.notifiy(type);
         }
