@@ -2,8 +2,6 @@ package dk.gundmann.userclient;
 
 import org.springframework.stereotype.Service;
 
-import io.jsonwebtoken.ExpiredJwtException;
-
 @Service
 public class UserService {
 
