@@ -23,15 +23,15 @@ public class AuthenticationResolver {
 		this.token = token;
 	}
 
-	@PostConstruct
 	public void updateToken() {
 		try {
-			if (token.getToken() == null) {
-				token.setToken(userClient
-						.login(AccountCredentials.builder().username("sys@gundmann.dk")
-								.password(btoa(properties.getSyspassword())).build())
-						.getHeaders().get(properties.getHeaderString()).get(0));
-			}
+			token.setToken(userClient
+					.login(AccountCredentials.builder()
+						.username("sys@gundmann.dk")
+						.password(btoa(properties.getSyspassword()))
+						.build())
+					.getHeaders()
+						.get(properties.getHeaderString()).get(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
