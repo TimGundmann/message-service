@@ -2,8 +2,6 @@ package dk.gundmann.userclient;
 
 import java.util.Base64;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.stereotype.Component;
 
 import dk.gundmann.security.SecurityConfig;
@@ -26,12 +24,9 @@ public class AuthenticationResolver {
 	public void updateToken() {
 		try {
 			token.setToken(userClient
-					.login(AccountCredentials.builder()
-						.username("sys@gundmann.dk")
-						.password(btoa(properties.getSyspassword()))
-						.build())
-					.getHeaders()
-						.get(properties.getHeaderString()).get(0));
+					.login(AccountCredentials.builder().username("sys@gundmann.dk")
+							.password(btoa(properties.getSyspassword())).build())
+					.getHeaders().get(properties.getHeaderString()).get(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
